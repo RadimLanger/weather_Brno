@@ -100,8 +100,8 @@
 				0AEAC5381C45A6AC00B6D454 /* AppDelegate.swift */,
 				0AEAC53A1C45A6AC00B6D454 /* ViewController.swift */,
 				0AEAC53C1C45A6AC00B6D454 /* Main.storyboard */,
-				0AEAC53F1C45A6AC00B6D454 /* Assets.xcassets */,
 				0AEAC5411C45A6AC00B6D454 /* LaunchScreen.storyboard */,
+				0AEAC53F1C45A6AC00B6D454 /* Assets.xcassets */,
 				0AEAC5441C45A6AC00B6D454 /* Info.plist */,
 			);
 			path = radim.langer.weatherApp;
@@ -484,6 +484,7 @@
 				0AEAC55F1C45A6AC00B6D454 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0AEAC5601C45A6AC00B6D454 /* Build configuration list for PBXNativeTarget "radim.langer.weatherAppTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +493,7 @@
 				0AEAC5621C45A6AC00B6D454 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0AEAC5631C45A6AC00B6D454 /* Build configuration list for PBXNativeTarget "radim.langer.weatherAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +502,7 @@
 				0AEAC5651C45A6AC00B6D454 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

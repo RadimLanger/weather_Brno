@@ -26,23 +26,30 @@ class ViewController: UIViewController {
     
     
     
-    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        getAllData()
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.contentSize.height = 1001
+        // Do any additional setup after loading the view, typically from a nib.
+        getAllData()
+    }
+
+    func getAllData(){
         // For getting current weather
-       getWeatherData("https://api.wunderground.com/api/3d920a10506e59e6/conditions/q/CA/Brno.json")
+        getWeatherData("https://api.wunderground.com/api/3d920a10506e59e6/conditions/q/CA/Brno.json")
         // For sunrise/sunset
         getWeatherData("https://api.wunderground.com/api/3d920a10506e59e6/astronomy/q/Brno.json")
         // Hourly information
         getWeatherData("http://api.wunderground.com/api/3d920a10506e59e6/hourly/q/Brno.json")
         // For 3 day forecast
         getWeatherData("http://api.wunderground.com/api/3d920a10506e59e6/forecast/q/Brno.json")
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
-
-    
     
     
     
@@ -135,19 +142,19 @@ class ViewController: UIViewController {
             imgLabel.image = UIImage(named: "sleet.png")
         } else if (weather.rangeOfString("storm") != nil){
             imgLabel.image = UIImage(named: "storm.png")
-        } else if (weather.rangeOfString("clear") != nil) || (weather.rangeOfString("sunny") != nil){
-            imgLabel.image = UIImage(named: "sun.png")
         } else if (weather.rangeOfString("nt_clear") != nil) || (weather.rangeOfString("nt_sunny") != nil){
             imgLabel.image = UIImage(named: "moon.png")
+        } else if (weather.rangeOfString("clear") != nil) || (weather.rangeOfString("sunny") != nil){
+            imgLabel.image = UIImage(named: "sun.png")
         } else if (weather.rangeOfString("cloudy") != nil){
             imgLabel.image = UIImage(named: "cloudy.png")
         } else if (weather.rangeOfString("fog") != nil) || (weather.rangeOfString("hazy") != nil){
             imgLabel.image = UIImage(named: "fog.png")
-        } else if (weather.rangeOfString("mostlycloudy") != nil) || (weather.rangeOfString("mostlysunny") != nil) || (weather.rangeOfString("partlycloudy") != nil) || (weather.rangeOfString("partlysunny") != nil){
-            imgLabel.image = UIImage(named: "sunCloudy.png")
         } else if (weather.rangeOfString("nt_mostlycloudy") != nil) || (weather.rangeOfString("nt_mostlysunny") != nil) || (weather.rangeOfString("nt_partlycloudy") != nil) || (weather.rangeOfString("nt_partlysunny") != nil){
             imgLabel.image = UIImage(named: "moonCloudy.png")
-        } else {
+        } else if (weather.rangeOfString("mostlycloudy") != nil) || (weather.rangeOfString("mostlysunny") != nil) || (weather.rangeOfString("partlycloudy") != nil) || (weather.rangeOfString("partlysunny") != nil){
+            imgLabel.image = UIImage(named: "sunCloudy.png")
+        }  else {
             alert("Icon error", message: "Error occured while setting icon")
         }
     }

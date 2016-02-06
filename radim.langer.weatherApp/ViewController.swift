@@ -23,37 +23,55 @@ class ViewController: UIViewController {
     @IBOutlet weak var sunsetLabel: UILabel!
     @IBOutlet weak var sunriseLabel: UILabel!
     @IBOutlet weak var speedDirLabel: UILabel!
-    
-    
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        getAllData()
+    var refreshControl: UIRefreshControl!
 
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scrollView.contentSize.height = 1001
         // Do any additional setup after loading the view, typically from a nib.
+        getAllData()
+        // Creates pullToRefresh function
+        createPullRefresh()
+        
+        // Notification for getting back from background
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "appDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
+        
+        // Sets crollView content height to 1001, to enable scrolling, also the refreshing
+        scrollView.contentSize.height = 1001
+
+    }
+    
+    // Refresh app data after getting back from background
+    func appDidBecomeActive(notification: NSNotification){
         getAllData()
     }
 
+    // Gets all the data
     func getAllData(){
         // For getting current weather
         getWeatherData("https://api.wunderground.com/api/3d920a10506e59e6/conditions/q/CA/Brno.json")
         // For sunrise/sunset
         getWeatherData("https://api.wunderground.com/api/3d920a10506e59e6/astronomy/q/Brno.json")
-        // Hourly information
-        getWeatherData("http://api.wunderground.com/api/3d920a10506e59e6/hourly/q/Brno.json")
         // For 3 day forecast
-        getWeatherData("http://api.wunderground.com/api/3d920a10506e59e6/forecast/q/Brno.json")
-        
+        getWeatherData("https://api.wunderground.com/api/3d920a10506e59e6/forecast/q/Brno.json")
+    }
+
+    // Creating function for refreshing data while pulling down the scrollView
+    func createPullRefresh(){
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: "refreshData:", forControlEvents: UIControlEvents.ValueChanged)
+        self.scrollView.addSubview(refreshControl)
     }
     
+    // Function for refreshing data after pulling down the
+    func refreshData(sender:AnyObject){
+        getAllData()
+        self.refreshControl.endRefreshing()
+    }
+
     
-    
-    
+    // Parse and sets all the labels
     func setLabels(weatherData: NSData){
         do {
             let json = try NSJSONSerialization.JSONObjectWithData(weatherData, options: []) as! NSDictionary
@@ -127,12 +145,15 @@ class ViewController: UIViewController {
         
     }
     
+    
+    // If something wrong happends, alert is called
     func alert(title: String, message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         presentViewController(alert, animated: true, completion: nil)
     }
     
     
+    // Setting icon depending on what icon is on their API
     func setIcon(weather: String){
         if (weather.rangeOfString("flurries") != nil) || (weather.rangeOfString("snow") != nil){
             imgLabel.image = UIImage(named: "snow.png")
@@ -159,7 +180,7 @@ class ViewController: UIViewController {
         }
     }
     
-    
+    // Gets all the data in differend thread
     func getWeatherData(urlString: String){
         let url = NSURL(string: urlString)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) { (data, response, error) in

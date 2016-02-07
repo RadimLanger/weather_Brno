@@ -24,12 +24,32 @@ class ViewController: UIViewController {
     @IBOutlet weak var sunriseLabel: UILabel!
     @IBOutlet weak var speedDirLabel: UILabel!
     var refreshControl: UIRefreshControl!
-
+    
+    // For quick future forecast
+    
+    @IBOutlet weak var firstForecastTitle: UILabel!
+    @IBOutlet weak var firstForecastInfo: UILabel!
+    @IBOutlet weak var firstForecastImg: UIImageView!
+    
+    
+    @IBOutlet weak var secondForecastTitle: UILabel!
+    @IBOutlet weak var secondForecastInfo: UILabel!
+    @IBOutlet weak var secondForecastImg: UIImageView!
+    
+    
+    @IBOutlet weak var thirdForecastTitle: UILabel!
+    @IBOutlet weak var thirdForecastInfo: UILabel!
+    @IBOutlet weak var thirdForecastImg: UIImageView!
+    
+    
+    @IBOutlet weak var fourthForecastTitle: UILabel!
+    @IBOutlet weak var fourthForecastInfo: UILabel!
+    @IBOutlet weak var fourthForecastImg: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        getAllData()
+
         // Creates pullToRefresh function
         createPullRefresh()
         
@@ -37,7 +57,7 @@ class ViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "appDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
         
         // Sets crollView content height to 1001, to enable scrolling, also the refreshing
-        scrollView.contentSize.height = 1001
+        scrollView.contentSize.height = 2000
 
     }
     
@@ -76,12 +96,13 @@ class ViewController: UIViewController {
         do {
             let json = try NSJSONSerialization.JSONObjectWithData(weatherData, options: []) as! NSDictionary
             
+            // Parsing information about sunrise / sunset time
             
                 if let b = json["sun_phase"] as? NSDictionary {
                     if let sunrise = b["sunrise"] as?  NSDictionary {
                         if let sunriseHour = sunrise["hour"] as? String {
                             if let sunriseMin = sunrise["minute"] as? String {
-                                //print("Sunrise: \(sunriseHour):\(sunriseMin)")
+                                print("Sunrise: \(sunriseHour):\(sunriseMin)")
                                 sunriseLabel.text = "\(sunriseHour):\(sunriseMin)"
                             }
                         }
@@ -97,7 +118,8 @@ class ViewController: UIViewController {
                     }
                 }
             
-            
+            // Parsing information about current weather
+
                 if let a = json["current_observation"] as? NSDictionary{
                     // For current weather situation
                     if let weatherSituation = a["weather"] as? String {
@@ -133,9 +155,68 @@ class ViewController: UIViewController {
                     // For current weather icon
                     if let iconWeather = a["icon_url"] as? String {
                         //print(iconWeather)
-                        setIcon(iconWeather)
+                        imgLabel.image = UIImage(named: setIcon(iconWeather))
                     }
             }
+            
+            // Parsing information about future weather
+            
+            if let forecast = json["forecast"] as? NSDictionary {
+                if let future_forecast = forecast["txt_forecast"] as? NSDictionary {
+                    if let forecast_day = future_forecast["forecastday"] as? NSArray {
+                        if let firstForecast = forecast_day[0] as? NSDictionary{
+                            if let icon = firstForecast["icon"] as? String{
+                                firstForecastImg.image = UIImage(named: setIcon(icon))
+                            }
+                            if let title = firstForecast["title"] as? String{
+                                firstForecastTitle.text = title
+                            }
+                            if let info = firstForecast["fcttext_metric"] as? String{
+                                firstForecastInfo.text = info
+                            }
+                        }
+                        if let secondtForecast = forecast_day[1] as? NSDictionary{
+                            if let icon = secondtForecast["icon"] as? String{
+                                secondForecastImg.image = UIImage(named: setIcon(icon))
+                            }
+                            if let title = secondtForecast["title"] as? String{
+                                secondForecastTitle.text = title
+                            }
+                            if let info = secondtForecast["fcttext_metric"] as? String{
+                                secondForecastInfo.text = info
+                            }
+                            
+                        }
+                        if let thirdForecast = forecast_day[2] as? NSDictionary{
+                            if let icon = thirdForecast["icon"] as? String{
+                                thirdForecastImg.image = UIImage(named: setIcon(icon))
+                            }
+                            if let title = thirdForecast["title"] as? String{
+                                thirdForecastTitle.text = title
+                            }
+                            if let info = thirdForecast["fcttext_metric"] as? String{
+                                thirdForecastInfo.text = info
+                            }
+                            
+                        }
+                        if let fourthForecast = forecast_day[3] as? NSDictionary{
+                            if let icon = fourthForecast["icon"] as? String{
+                                fourthForecastImg.image = UIImage(named: setIcon(icon))
+                            }
+                            if let title = fourthForecast["title"] as? String{
+                                fourthForecastTitle.text = title
+                            }
+                            if let info = fourthForecast["fcttext_metric"] as? String{
+                                fourthForecastInfo.text = info
+                            }
+                            
+                        }
+                        
+                    }
+                }
+            }
+            
+            
             
         } catch {
                 alert("JSON error", message: "Error occured while calling API")
@@ -154,31 +235,33 @@ class ViewController: UIViewController {
     
     
     // Setting icon depending on what icon is on their API
-    func setIcon(weather: String){
+    func setIcon(weather: String)->String{
         if (weather.rangeOfString("flurries") != nil) || (weather.rangeOfString("snow") != nil){
-            imgLabel.image = UIImage(named: "snow.png")
+            return "snow.png"
         } else if (weather.rangeOfString("rain") != nil){
-            imgLabel.image = UIImage(named: "rain.png")
+            return "rain.png"
         } else if (weather.rangeOfString("sleet") != nil){
-            imgLabel.image = UIImage(named: "sleet.png")
+            return "sleet.png"
         } else if (weather.rangeOfString("storm") != nil){
-            imgLabel.image = UIImage(named: "storm.png")
+            return "storm.png"
         } else if (weather.rangeOfString("nt_clear") != nil) || (weather.rangeOfString("nt_sunny") != nil){
-            imgLabel.image = UIImage(named: "moon.png")
+            return "moon.png"
         } else if (weather.rangeOfString("clear") != nil) || (weather.rangeOfString("sunny") != nil){
-            imgLabel.image = UIImage(named: "sun.png")
+            return "sun.png"
         } else if (weather.rangeOfString("cloudy") != nil){
-            imgLabel.image = UIImage(named: "cloudy.png")
+            return "cloudy.png"
         } else if (weather.rangeOfString("fog") != nil) || (weather.rangeOfString("hazy") != nil){
-            imgLabel.image = UIImage(named: "fog.png")
+            return "fog.png"
         } else if (weather.rangeOfString("nt_mostlycloudy") != nil) || (weather.rangeOfString("nt_mostlysunny") != nil) || (weather.rangeOfString("nt_partlycloudy") != nil) || (weather.rangeOfString("nt_partlysunny") != nil){
-            imgLabel.image = UIImage(named: "moonCloudy.png")
+            return "moonCloudy.png"
         } else if (weather.rangeOfString("mostlycloudy") != nil) || (weather.rangeOfString("mostlysunny") != nil) || (weather.rangeOfString("partlycloudy") != nil) || (weather.rangeOfString("partlysunny") != nil){
-            imgLabel.image = UIImage(named: "sunCloudy.png")
-        }  else {
+            return "sunCloudy.png"
+        } else {
             alert("Icon error", message: "Error occured while setting icon")
+            return "error"
         }
     }
+
     
     // Gets all the data in differend thread
     func getWeatherData(urlString: String){

@@ -164,22 +164,13 @@
                                             <rect key="frame" x="275" y="147" width="27" height="26"/>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1J-Hk-uwP">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1J-Hk-uwP">
                                         <rect key="frame" x="208" y="140" width="96" height="80"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="96"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="85"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="204" y="134" width="108" height="112"/>
-                                        </variation>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 Day forecast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1J-OD-bjT">
-                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <variation key="widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="20" y="443" width="112" height="21"/>
+                                            <rect key="frame" x="203" y="132" width="108" height="112"/>
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uo2-VB-Un6">
@@ -189,6 +180,111 @@
                                         <nil key="highlightedColor"/>
                                         <variation key="widthClass=compact" fixedFrame="YES">
                                             <rect key="frame" x="20" y="53" width="39" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="first" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYU-OF-P1b">
+                                        <rect key="frame" x="233" y="250" width="117" height="20"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="20" y="472" width="291" height="24"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fts-Au-aQh">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="20" y="504" width="242" height="80"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sec" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qa5-uc-jJp">
+                                        <rect key="frame" x="233" y="250" width="117" height="20"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="20" y="592" width="291" height="24"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="th" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBR-CD-oeM">
+                                        <rect key="frame" x="233" y="250" width="117" height="20"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="20" y="712" width="291" height="24"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="four" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yhz-Gb-GZg">
+                                        <rect key="frame" x="233" y="250" width="117" height="20"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="20" y="832" width="291" height="24"/>
+                                        </variation>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TZB-u6-h78">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="270" y="504" width="80" height="80"/>
+                                        </variation>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8F7-rY-mdz">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="270" y="624" width="80" height="80"/>
+                                        </variation>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="opT-XJ-Wuf">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="270" y="744" width="80" height="80"/>
+                                        </variation>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZI-EF-KVa">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="20" y="624" width="242" height="80"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiQ-Mv-w1E">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="20" y="744" width="242" height="80"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NoQ-KO-AEP">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="20" y="864" width="242" height="80"/>
+                                        </variation>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LIv-Ub-nvL">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="270" y="864" width="80" height="80"/>
+                                        </variation>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forecast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1J-OD-bjT">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="20" y="443" width="67" height="21"/>
                                         </variation>
                                     </label>
                                 </subviews>
@@ -212,12 +308,24 @@
                                         <exclude reference="Gc6-6Z-7Nq"/>
                                         <exclude reference="aTn-ED-eqU"/>
                                         <exclude reference="r1J-Hk-uwP"/>
-                                        <exclude reference="r1J-OD-bjT"/>
                                         <exclude reference="Uo2-VB-Un6"/>
+                                        <exclude reference="oYU-OF-P1b"/>
+                                        <exclude reference="Fts-Au-aQh"/>
+                                        <exclude reference="Qa5-uc-jJp"/>
+                                        <exclude reference="EBR-CD-oeM"/>
+                                        <exclude reference="Yhz-Gb-GZg"/>
+                                        <exclude reference="TZB-u6-h78"/>
+                                        <exclude reference="8F7-rY-mdz"/>
+                                        <exclude reference="opT-XJ-Wuf"/>
+                                        <exclude reference="uZI-EF-KVa"/>
+                                        <exclude reference="PiQ-Mv-w1E"/>
+                                        <exclude reference="NoQ-KO-AEP"/>
+                                        <exclude reference="LIv-Ub-nvL"/>
+                                        <exclude reference="r1J-OD-bjT"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="1000"/>
                                     <mask key="subviews">
                                         <include reference="sXz-dz-JTz"/>
                                         <include reference="24O-1b-kjp"/>
@@ -237,8 +345,20 @@
                                         <include reference="Gc6-6Z-7Nq"/>
                                         <include reference="aTn-ED-eqU"/>
                                         <include reference="r1J-Hk-uwP"/>
-                                        <include reference="r1J-OD-bjT"/>
                                         <include reference="Uo2-VB-Un6"/>
+                                        <include reference="oYU-OF-P1b"/>
+                                        <include reference="Fts-Au-aQh"/>
+                                        <include reference="Qa5-uc-jJp"/>
+                                        <include reference="EBR-CD-oeM"/>
+                                        <include reference="Yhz-Gb-GZg"/>
+                                        <include reference="TZB-u6-h78"/>
+                                        <include reference="8F7-rY-mdz"/>
+                                        <include reference="opT-XJ-Wuf"/>
+                                        <include reference="uZI-EF-KVa"/>
+                                        <include reference="PiQ-Mv-w1E"/>
+                                        <include reference="NoQ-KO-AEP"/>
+                                        <include reference="LIv-Ub-nvL"/>
+                                        <include reference="r1J-OD-bjT"/>
                                     </mask>
                                 </variation>
                             </scrollView>
@@ -255,16 +375,30 @@
                             </mask>
                         </variation>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="1000"/>
                     <connections>
                         <outlet property="currentLabel" destination="24O-1b-kjp" id="F4J-8K-hXX"/>
                         <outlet property="feelsLikeLabel" destination="Imx-bO-kag" id="rLA-FJ-gLI"/>
+                        <outlet property="firstForecastImg" destination="TZB-u6-h78" id="6Dw-AQ-xlU"/>
+                        <outlet property="firstForecastInfo" destination="Fts-Au-aQh" id="cHT-vt-HOC"/>
+                        <outlet property="firstForecastTitle" destination="oYU-OF-P1b" id="kms-WL-Iex"/>
+                        <outlet property="fourthForecastImg" destination="LIv-Ub-nvL" id="2De-lG-GKG"/>
+                        <outlet property="fourthForecastInfo" destination="NoQ-KO-AEP" id="ni7-Ob-nfj"/>
+                        <outlet property="fourthForecastTitle" destination="Yhz-Gb-GZg" id="FHY-r7-DiD"/>
                         <outlet property="humidLabel" destination="9ax-2Y-Rx1" id="3gd-fr-bQv"/>
                         <outlet property="imgLabel" destination="tmW-Fd-MAR" id="q6d-qw-N02"/>
                         <outlet property="scrollView" destination="Pgd-Yg-UbB" id="wtW-yB-oxf"/>
+                        <outlet property="secondForecastImg" destination="8F7-rY-mdz" id="JPZ-ka-dWO"/>
+                        <outlet property="secondForecastInfo" destination="uZI-EF-KVa" id="CQA-9J-E3B"/>
+                        <outlet property="secondForecastTitle" destination="Qa5-uc-jJp" id="vfa-Hw-mS2"/>
                         <outlet property="speedDirLabel" destination="t0f-Ph-UNE" id="MOS-Es-3MD"/>
                         <outlet property="sunriseLabel" destination="Gc6-6Z-7Nq" id="DJ2-fS-oh2"/>
                         <outlet property="sunsetLabel" destination="hcX-fi-TCM" id="TzW-FK-TWV"/>
                         <outlet property="tempLabel" destination="r1J-Hk-uwP" id="llF-PY-RKu"/>
+                        <outlet property="thirdForecastImg" destination="opT-XJ-Wuf" id="UhR-8r-MyZ"/>
+                        <outlet property="thirdForecastInfo" destination="PiQ-Mv-w1E" id="k2w-Am-4bF"/>
+                        <outlet property="thirdForecastTitle" destination="EBR-CD-oeM" id="58V-Wg-ISk"/>
                         <outlet property="visibLabel" destination="5sL-HF-W04" id="b8H-vS-dWh"/>
                     </connections>
                 </viewController>

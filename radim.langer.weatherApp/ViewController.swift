@@ -45,21 +45,27 @@ class ViewController: UIViewController {
     @IBOutlet weak var fourthForecastTitle: UILabel!
     @IBOutlet weak var fourthForecastInfo: UILabel!
     @IBOutlet weak var fourthForecastImg: UIImageView!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
         // Creates pullToRefresh function
         createPullRefresh()
         
         // Notification for getting back from background
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "appDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
         
-        // Sets crollView content height to 1001, to enable scrolling, also the refreshing
-        scrollView.contentSize.height = 2000
+        // Sets crollView content height to specific number, depends which device you're using, to enable scrolling, also the refreshing
+//        setScrollViewHeight()
+        scrollView.contentSize.height = 1300
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        //print(self.view.frame.size.height)
 
     }
+    
     
     // Refresh app data after getting back from background
     func appDidBecomeActive(notification: NSNotification){
@@ -69,11 +75,11 @@ class ViewController: UIViewController {
     // Gets all the data
     func getAllData(){
         // For getting current weather
-        getWeatherData("https://api.wunderground.com/api/3d920a10506e59e6/conditions/q/CA/Brno.json")
+        getWeatherData("https://api.wunderground.com/api/32ca3e99da3f6f09/conditions/q/CA/Brno.json")
         // For sunrise/sunset
-        getWeatherData("https://api.wunderground.com/api/3d920a10506e59e6/astronomy/q/Brno.json")
+        getWeatherData("https://api.wunderground.com/api/32ca3e99da3f6f09/astronomy/q/Brno.json")
         // For 3 day forecast
-        getWeatherData("https://api.wunderground.com/api/3d920a10506e59e6/forecast/q/Brno.json")
+        getWeatherData("https://api.wunderground.com/api/bf53178fe77e23cb/forecast/q/Brno.json")
     }
 
     // Creating function for refreshing data while pulling down the scrollView
@@ -90,7 +96,17 @@ class ViewController: UIViewController {
         self.refreshControl.endRefreshing()
     }
 
-    
+    func setScrollViewHeight(){
+        switch UIDevice.currentDevice().modelName{
+        case "iPhone 6":
+            scrollView.contentSize.height = 1300
+            break
+
+        default: break
+        }
+
+    }
+
     // Parse and sets all the labels
     func setLabels(weatherData: NSData){
         do {
@@ -102,7 +118,7 @@ class ViewController: UIViewController {
                     if let sunrise = b["sunrise"] as?  NSDictionary {
                         if let sunriseHour = sunrise["hour"] as? String {
                             if let sunriseMin = sunrise["minute"] as? String {
-                                print("Sunrise: \(sunriseHour):\(sunriseMin)")
+                                //print("Sunrise: \(sunriseHour):\(sunriseMin)")
                                 sunriseLabel.text = "\(sunriseHour):\(sunriseMin)"
                             }
                         }
@@ -155,7 +171,7 @@ class ViewController: UIViewController {
                     // For current weather icon
                     if let iconWeather = a["icon_url"] as? String {
                         //print(iconWeather)
-                        imgLabel.image = UIImage(named: setIcon(iconWeather))
+                        imgLabel.image = UIImage(named: setIcon(substringLink(iconWeather)))
                     }
             }
             
@@ -217,7 +233,16 @@ class ViewController: UIViewController {
             }
             
             
-            
+            // Parsing json to see if there is an error, maybe invalid API key
+            if let checkingError = json["response"] as? NSDictionary{
+                if let error = checkingError["error"] as? NSDictionary{
+                    if let type = error["type"] as? String{
+                        if let desc = error["description"] as? String{
+                            alert(type, message: desc)
+                        }
+                    }
+                }
+            }
         } catch {
                 alert("JSON error", message: "Error occured while calling API")
         }
@@ -227,38 +252,60 @@ class ViewController: UIViewController {
     }
     
     
-    // If something wrong happends, alert is called
+    // If something wrong happends, alert with info is called
     func alert(title: String, message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    // Function to substring link, to get name of picture
+    func substringLink(fullLink: String)->String{
+        let delete1 = fullLink.rangeOfString("/", options: .BackwardsSearch)?.startIndex
+        let slashGifLink = fullLink.substringFromIndex(delete1!)
+        let delete2 = slashGifLink.startIndex.advancedBy(1)
+        let gifLink = slashGifLink.substringFromIndex(delete2)
+        let delete3 = gifLink.endIndex.advancedBy(-4)
+        let nameOfPicture = gifLink.substringToIndex(delete3)
+        return nameOfPicture
+    }
+    
     
     // Setting icon depending on what icon is on their API
     func setIcon(weather: String)->String{
-        if (weather.rangeOfString("flurries") != nil) || (weather.rangeOfString("snow") != nil){
-            return "snow.png"
-        } else if (weather.rangeOfString("rain") != nil){
-            return "rain.png"
-        } else if (weather.rangeOfString("sleet") != nil){
-            return "sleet.png"
-        } else if (weather.rangeOfString("storm") != nil){
-            return "storm.png"
-        } else if (weather.rangeOfString("nt_clear") != nil) || (weather.rangeOfString("nt_sunny") != nil){
-            return "moon.png"
-        } else if (weather.rangeOfString("clear") != nil) || (weather.rangeOfString("sunny") != nil){
-            return "sun.png"
-        } else if (weather.rangeOfString("cloudy") != nil){
-            return "cloudy.png"
-        } else if (weather.rangeOfString("fog") != nil) || (weather.rangeOfString("hazy") != nil){
-            return "fog.png"
-        } else if (weather.rangeOfString("nt_mostlycloudy") != nil) || (weather.rangeOfString("nt_mostlysunny") != nil) || (weather.rangeOfString("nt_partlycloudy") != nil) || (weather.rangeOfString("nt_partlysunny") != nil){
-            return "moonCloudy.png"
-        } else if (weather.rangeOfString("mostlycloudy") != nil) || (weather.rangeOfString("mostlysunny") != nil) || (weather.rangeOfString("partlycloudy") != nil) || (weather.rangeOfString("partlysunny") != nil){
-            return "sunCloudy.png"
-        } else {
-            alert("Icon error", message: "Error occured while setting icon")
-            return "error"
+        switch(weather){
+            case "flurries","snow","chanceflurries","chancesnow","nt_chanceflurries","nt_chancesnow","nt_flurries","nt_snow":
+                return "snow.png"
+            
+            case "rain","chancerain","nt_chancerain","nt_rain":
+                return "rain.png"
+            
+            case "sleet","chancesleet","nt_chancesleet","nt_sleet":
+                return "sleet.png"
+            
+            case "tstorms","chancetstorms","nt_chancetstorms","nt_tstorms":
+                return "storm.png"
+            
+            case "nt_clear","nt_sunny":
+                return "moon.png"
+            
+            case "clear","sunny":
+                return "sun.png"
+            
+            case "cloudy","nt_cloudy":
+                return "cloudy.png"
+            
+            case "fog","hazy","nt_fog","nt_hazy":
+                return "fog.png"
+            
+            case "nt_mostlycloudy","nt_mostlysunny","nt_partlycloudy","nt_partlysunny":
+                return "moonCloudy.png"
+            
+            case "mostlycloudy","mostlysunny","partlycloudy","partlysunny":
+                return "sunCloudy.png"
+
+            
+        default:    alert("Icon error", message: "Error occured while setting icon")
+                    return "error"
         }
     }
 

@@ -25,10 +25,12 @@
                         <color key="backgroundColor" red="0.049372918903827667" green="0.45919191837310791" blue="0.89127141237258911" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="n5Z-lC-eX9" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-0.5" id="R89-h1-cgT">
+                                <variation key="heightClass=compact" constant="-6.5"/>
                                 <variation key="widthClass=compact" constant="-0.5"/>
                                 <variation key="heightClass=compact-widthClass=compact" constant="-0.5"/>
                             </constraint>
                             <constraint firstItem="n5Z-lC-eX9" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="173" id="XK2-lo-2UO">
+                                <variation key="heightClass=compact" constant="82"/>
                                 <variation key="widthClass=compact" constant="163"/>
                                 <variation key="heightClass=compact-widthClass=compact" constant="90"/>
                                 <variation key="heightClass=regular-widthClass=compact" constant="248"/>

@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0A2C20531C66A91E00F345EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A2C20511C66A91E00F345EE /* LaunchScreen.storyboard */; };
-		0A2C20571C67727900F345EE /* iPhoneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C20561C67727900F345EE /* iPhoneModel.swift */; };
 		0A2C20591C6A70B100F345EE /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C20581C6A70B100F345EE /* TableViewController.swift */; };
+		0A2C205B1C6A7DC200F345EE /* NewsForecastItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C205A1C6A7DC200F345EE /* NewsForecastItem.swift */; };
+		0A2C205D1C6A807400F345EE /* NewsItemForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C205C1C6A807400F345EE /* NewsItemForecast.swift */; };
 		0AEAC5391C45A6AC00B6D454 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEAC5381C45A6AC00B6D454 /* AppDelegate.swift */; };
-		0AEAC53B1C45A6AC00B6D454 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEAC53A1C45A6AC00B6D454 /* ViewController.swift */; };
 		0AEAC53E1C45A6AC00B6D454 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AEAC53C1C45A6AC00B6D454 /* Main.storyboard */; };
 		0AEAC5401C45A6AC00B6D454 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AEAC53F1C45A6AC00B6D454 /* Assets.xcassets */; };
 		0AEAC54E1C45A6AC00B6D454 /* radim_langer_weatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEAC54D1C45A6AC00B6D454 /* radim_langer_weatherAppTests.swift */; };
@@ -37,11 +37,11 @@
 
 /* Begin PBXFileReference section */
 		0A2C20521C66A91E00F345EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		0A2C20561C67727900F345EE /* iPhoneModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iPhoneModel.swift; sourceTree = "<group>"; };
 		0A2C20581C6A70B100F345EE /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		0A2C205A1C6A7DC200F345EE /* NewsForecastItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsForecastItem.swift; sourceTree = "<group>"; };
+		0A2C205C1C6A807400F345EE /* NewsItemForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItemForecast.swift; sourceTree = "<group>"; };
 		0AEAC5351C45A6AC00B6D454 /* radim.langer.weatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = radim.langer.weatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AEAC5381C45A6AC00B6D454 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0AEAC53A1C45A6AC00B6D454 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0AEAC53D1C45A6AC00B6D454 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0AEAC53F1C45A6AC00B6D454 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AEAC5441C45A6AC00B6D454 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,9 +102,9 @@
 			isa = PBXGroup;
 			children = (
 				0AEAC5381C45A6AC00B6D454 /* AppDelegate.swift */,
-				0AEAC53A1C45A6AC00B6D454 /* ViewController.swift */,
 				0A2C20581C6A70B100F345EE /* TableViewController.swift */,
-				0A2C20561C67727900F345EE /* iPhoneModel.swift */,
+				0A2C205C1C6A807400F345EE /* NewsItemForecast.swift */,
+				0A2C205A1C6A7DC200F345EE /* NewsForecastItem.swift */,
 				0AEAC53C1C45A6AC00B6D454 /* Main.storyboard */,
 				0A2C20511C66A91E00F345EE /* LaunchScreen.storyboard */,
 				0AEAC53F1C45A6AC00B6D454 /* Assets.xcassets */,
@@ -263,9 +263,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A2C20571C67727900F345EE /* iPhoneModel.swift in Sources */,
+				0A2C205B1C6A7DC200F345EE /* NewsForecastItem.swift in Sources */,
+				0A2C205D1C6A807400F345EE /* NewsItemForecast.swift in Sources */,
 				0A2C20591C6A70B100F345EE /* TableViewController.swift in Sources */,
-				0AEAC53B1C45A6AC00B6D454 /* ViewController.swift in Sources */,
 				0AEAC5391C45A6AC00B6D454 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

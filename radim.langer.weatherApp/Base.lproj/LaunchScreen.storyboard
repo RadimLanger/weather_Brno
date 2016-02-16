@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,46 +17,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RainbowCloud" translatesAutoresizingMaskIntoConstraints="NO" id="n5Z-lC-eX9">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="RainbowCloud" translatesAutoresizingMaskIntoConstraints="NO" id="n5Z-lC-eX9">
                                 <rect key="frame" x="114" y="193" width="373" height="214"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="234" id="1iJ-H9-lgk">
+                                        <variation key="widthClass=compact" constant="206"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="322" id="ewY-BY-ZHY"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1iJ-H9-lgk"/>
+                                        <exclude reference="ewY-BY-ZHY"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="1iJ-H9-lgk"/>
+                                        <include reference="ewY-BY-ZHY"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.049372918903827667" green="0.45919191837310791" blue="0.89127141237258911" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="n5Z-lC-eX9" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-0.5" id="R89-h1-cgT">
-                                <variation key="heightClass=compact" constant="-6.5"/>
-                                <variation key="widthClass=compact" constant="-0.5"/>
-                                <variation key="heightClass=compact-widthClass=compact" constant="-0.5"/>
-                            </constraint>
-                            <constraint firstItem="n5Z-lC-eX9" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="173" id="XK2-lo-2UO">
-                                <variation key="heightClass=compact" constant="82"/>
-                                <variation key="widthClass=compact" constant="163"/>
-                                <variation key="heightClass=compact-widthClass=compact" constant="90"/>
-                                <variation key="heightClass=regular-widthClass=compact" constant="248"/>
-                            </constraint>
-                            <constraint firstItem="n5Z-lC-eX9" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="94" id="gfE-2Y-UjD">
-                                <variation key="widthClass=compact" constant="19"/>
-                                <variation key="heightClass=compact-widthClass=compact" constant="38"/>
-                            </constraint>
-                            <constraint firstItem="n5Z-lC-eX9" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="94" id="kg5-5t-e9c">
-                                <variation key="widthClass=compact" constant="19"/>
-                                <variation key="heightClass=compact-widthClass=compact" constant="38"/>
-                            </constraint>
-                            <constraint firstItem="n5Z-lC-eX9" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="pNY-Bi-OSV"/>
+                            <constraint firstItem="n5Z-lC-eX9" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="KMe-RZ-3gs"/>
+                            <constraint firstItem="n5Z-lC-eX9" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="tom-6G-9HI"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="KMe-RZ-3gs"/>
+                                <exclude reference="tom-6G-9HI"/>
+                            </mask>
+                        </variation>
                         <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="n5Z-lC-eX9"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=compact-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="n5Z-lC-eX9"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="n5Z-lC-eX9"/>
+                            <mask key="constraints">
+                                <include reference="KMe-RZ-3gs"/>
+                                <include reference="tom-6G-9HI"/>
                             </mask>
                         </variation>
                     </view>

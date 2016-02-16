@@ -11,21 +11,24 @@ import UIKit
 
 
 var headerView: UIView!
-private let kTableHeaderHeight: CGFloat = 300.0
+private let kTableHeaderHeight: CGFloat = 400.0
 
 
 class TableViewController: UITableViewController {
     
-    @IBOutlet weak var speedDir: UILabel!
-    @IBOutlet weak var sunrise: UILabel!
-    @IBOutlet weak var sunset: UILabel!
-    @IBOutlet weak var fLike: UILabel!
-    @IBOutlet weak var humid: UILabel!
-    @IBOutlet weak var visibility: UILabel!
-    @IBOutlet weak var current: UILabel!
-    @IBOutlet weak var temp: UILabel!
-    @IBOutlet weak var backgroundImage: UILabel!
     
+    @IBOutlet weak var speedDirWindLabel: UILabel!
+    @IBOutlet weak var currentWeatherLabel: UILabel!
+    @IBOutlet weak var currentTempLabel: UILabel!
+    @IBOutlet weak var sunriseLabel: UILabel!
+    @IBOutlet weak var sunsetLabel: UILabel!
+    @IBOutlet weak var feelsLikeLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var visibilityLabel: UILabel!
+    @IBOutlet weak var imgHeaderView: UIImageView!
+    
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+
     
     var forecastArray = [NewsForecastItem]()
     
@@ -64,6 +67,7 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        
         headerView = tableView.tableHeaderView
         tableView.tableHeaderView = nil
 
@@ -90,6 +94,8 @@ class TableViewController: UITableViewController {
     
     // Gets all the data
     func getAllData(){
+        // From this point we're pulling data from web, we have to set on the animation for activity indicator
+        self.loadingIndicator.startAnimating()
         // For getting current weather
         getWeatherData("https://api.wunderground.com/api/32ca3e99da3f6f09/conditions/q/CA/Brno.json")
         // For sunrise/sunset
@@ -117,6 +123,7 @@ class TableViewController: UITableViewController {
     // Parse and sets all the labels
     func setLabels(weatherData: NSData){
         do {
+
             let json = try NSJSONSerialization.JSONObjectWithData(weatherData, options: []) as! NSDictionary
             
             // Parsing information about sunrise / sunset time
@@ -125,7 +132,8 @@ class TableViewController: UITableViewController {
                 if let sunrise = b["sunrise"] as?  NSDictionary {
                     if let sunriseHour = sunrise["hour"] as? String {
                         if let sunriseMin = sunrise["minute"] as? String {
-                            print("Sunrise: \(sunriseHour):\(sunriseMin)")
+                            //print("Sunrise: \(sunriseHour):\(sunriseMin)")
+                            sunriseLabel.text = "\(sunriseHour):\(sunriseMin)"
                             
                         }
                     }
@@ -134,8 +142,9 @@ class TableViewController: UITableViewController {
                 if let sunset = b["sunset"] as? NSDictionary {
                     if let sunsetHour = sunset["hour"] as? String {
                         if let sunsetMin = sunset["minute"] as? String {
-                            print("Sunset: \(sunsetHour):\(sunsetMin)")
-                            
+                            //print("Sunset: \(sunsetHour):\(sunsetMin)")
+                            sunsetLabel.text = "\(sunsetHour):\(sunsetMin)"
+
                         }
                     }
                 }
@@ -146,43 +155,43 @@ class TableViewController: UITableViewController {
             if let a = json["current_observation"] as? NSDictionary{
                 // For current weather situation
                 if let weatherSituation = a["weather"] as? String {
-                    print("Current weather:    \(weatherSituation)")
-                    //current.text = weatherSituation
+                    //print("Current weather:    \(weatherSituation)")
+                    currentWeatherLabel.text = weatherSituation
                     
                 }
                 // For current temperature in °C
                 if let temp_c = a["temp_c"] as? Int {
                     //print("Temperature now:    \(temp_c) °C")
-                    //temp.text = String(temp_c)
+                    currentTempLabel.text = "\(temp_c)°"
                     
                 }
                 // For temperatureThatFeelsLike in °C
                 if let feelsLike = a["feelslike_c"] as? String {
                     //print("Feels like: \(feelsLike) °C")
-                    //fLike.text = feelsLike
+                    feelsLikeLabel.text = "\(feelsLike)°"
                     
                 }
                 // For current humidity in %
                 if let humidity = a["relative_humidity"] as? String {
                     //print("Humidity:        \(humidity)")
-                    humid.text = humidity
+                    humidityLabel.text = humidity
                     
                 }
                 // for current Wind direction and wind speed
                 if let windDir = a["wind_dir"] as? String {
                     if let windKph = a["wind_kph"] as? Int {
                         //print("Wind speed \(windKph) km/h and direction: \(windDir)")
-                        speedDir.text = "\(windKph) km/h \(windDir)"
+                        speedDirWindLabel.text = "\(windKph) km/h \(windDir)"
                     }
                 }
                 if let visibilityKm = a["visibility_km"] as? String {
                     //print("Visibility is: \(visibilityKm) km")
-                    visibility.text = visibilityKm
+                    visibilityLabel.text = "\(visibilityKm) km"
                 }
                 // For current weather icon
-                if let iconWeather = a["icon_url"] as? String {
-                    //print(iconWeather)
-                    
+                if let headerImg = a["icon_url"] as? String {
+                    imgHeaderView.image = UIImage(named: setIcon(substringLink(headerImg)).1)
+//                    imgHeaderView.image = UIImage(named: "imgFoggy.png")
                 }
             }
             
@@ -192,12 +201,14 @@ class TableViewController: UITableViewController {
                 if let future_forecast = forecast["txt_forecast"] as? NSDictionary {
                     if let forecast_day = future_forecast["forecastday"] as? NSArray {
                         forecastArray = []
-                        for i in isNight...4 {
+                        for i in isNight...(isNight+4) {
                             if let firstForecast = forecast_day[i] as? NSDictionary{
                                 if let icon = firstForecast["icon"] as? String{
                                     if let title = firstForecast["title"] as? String{
                                         if let info = firstForecast["fcttext_metric"] as? String{
-                                            forecastArray.append(NewsForecastItem(title: title, image: setIcon(icon), summary: info))
+                                            forecastArray.append(NewsForecastItem(title: title, image: setIcon(icon).0, summary: info))
+                                            // To this point we were downloading/parsing data, we can stop animating the activity indicator
+                                            loadingIndicator.stopAnimating()
                                             tableView.reloadData()
                                         }
                                     }
@@ -232,6 +243,9 @@ class TableViewController: UITableViewController {
     // If something wrong happends, alert with info is called
     func alert(title: String, message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil))
+        
         presentViewController(alert, animated: true, completion: nil)
     }
     
@@ -265,41 +279,41 @@ class TableViewController: UITableViewController {
     
     
     // Setting icon depending on what icon is on their API
-    func setIcon(weather: String)->String{
+    func setIcon(weather: String)->(icon: String, picture: String){
         switch(weather){
         case "flurries","snow","chanceflurries","chancesnow","nt_chanceflurries","nt_chancesnow","nt_flurries","nt_snow":
-            return "snow.png"
+            return ("snow.png", "imgSnow.png")
             
         case "rain","chancerain","nt_chancerain","nt_rain":
-            return "rain.png"
+            return ("rain.png","imgRain.png")
             
         case "sleet","chancesleet","nt_chancesleet","nt_sleet":
-            return "sleet.png"
+            return ("sleet.png","imgSleed.png")
             
         case "tstorms","chancetstorms","nt_chancetstorms","nt_tstorms":
-            return "storm.png"
+            return ("storm.png","imgStorm.png")
             
         case "nt_clear","nt_sunny":
-            return "moon.png"
+            return ("moon.png","imgMoony.png")
             
         case "clear","sunny":
-            return "sun.png"
+            return ("sun.png","imgSunny.png")
             
         case "cloudy","nt_cloudy":
-            return "cloudy.png"
+            return ("cloudy.png","imgCloudy.png")
             
         case "fog","hazy","nt_fog","nt_hazy":
-            return "fog.png"
+            return ("fog.png","imgFoggy.png")
             
         case "nt_mostlycloudy","nt_mostlysunny","nt_partlycloudy","nt_partlysunny":
-            return "moonCloudy.png"
+            return ("moonCloudy.png","imgMoonCloudy.png")
             
         case "mostlycloudy","mostlysunny","partlycloudy","partlysunny":
-            return "sunCloudy.png"
+            return ("sunCloudy.png","imgSunCloudy.png")
             
             
         default:    alert("Icon error", message: "Error occured while setting icon")
-        return "error"
+        return ("error","error")
         }
     }
     

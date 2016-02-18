@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import QuartzCore
 
 
 var headerView: UIView!
@@ -29,6 +30,15 @@ class TableViewController: UITableViewController {
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
 
+    // We're not setting these labels, we just need to se the round corners to it
+    @IBOutlet weak var windLabel: UILabel!
+    @IBOutlet weak var feelsLabel: UILabel!
+    @IBOutlet weak var humidLabel: UILabel!
+    @IBOutlet weak var visibLabel: UILabel!
+    @IBOutlet weak var sunLabel: UILabel!
+    @IBOutlet weak var setLabel: UILabel!
+    
+    
     
     var forecastArray = [NewsForecastItem]()
     
@@ -67,7 +77,6 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
         headerView = tableView.tableHeaderView
         tableView.tableHeaderView = nil
 
@@ -83,8 +92,31 @@ class TableViewController: UITableViewController {
         // Notification for getting back from background
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "appDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
         
+        roundLabels()
+        
     }
     
+    
+    func roundLabels() {
+        roundLabel(windLabel)
+        roundLabel(feelsLabel)
+        roundLabel(humidLabel)
+        roundLabel(visibLabel)
+        roundLabel(sunLabel)
+        roundLabel(setLabel)
+        roundLabel(sunriseLabel)
+        roundLabel(sunsetLabel)
+        roundLabel(feelsLikeLabel)
+        roundLabel(humidityLabel)
+        roundLabel(visibilityLabel)
+        roundLabel(speedDirWindLabel)
+    }
+
+    // Setting color and round corners of text labels
+    func roundLabel(label: UILabel) {
+        label.layer.backgroundColor  = UIColor(red: 0.5, green: 0.7, blue: 0.9, alpha: 0.7).CGColor
+        label.layer.cornerRadius = 5
+    }
     
     
     // Refresh app data after getting back from background

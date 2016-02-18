@@ -191,7 +191,6 @@ class TableViewController: UITableViewController {
                 // For current weather icon
                 if let headerImg = a["icon_url"] as? String {
                     imgHeaderView.image = UIImage(named: setIcon(substringLink(headerImg)).1)
-//                    imgHeaderView.image = UIImage(named: "imgFoggy.png")
                 }
             }
             

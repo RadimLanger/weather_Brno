@@ -319,7 +319,7 @@ class TableViewController: UITableViewController {
             return ("rain.png","imgRain.png")
             
         case "sleet","chancesleet","nt_chancesleet","nt_sleet":
-            return ("sleet.png","imgSleed.png")
+            return ("sleet.png","imgSleet.png")
             
         case "tstorms","chancetstorms","nt_chancetstorms","nt_tstorms":
             return ("storm.png","imgStorm.png")

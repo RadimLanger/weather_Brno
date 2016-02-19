@@ -750,6 +750,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cellDesign" width="839" height="530"/>
+        <image name="cellDesign" width="400" height="130"/>
     </resources>
 </document>

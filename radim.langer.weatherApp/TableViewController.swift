@@ -28,8 +28,6 @@ class TableViewController: UITableViewController {
     @IBOutlet weak var visibilityLabel: UILabel!
     @IBOutlet weak var imgHeaderView: UIImageView!
     
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-
     // We're not setting these labels, we just need to se the round corners to it
     @IBOutlet weak var windLabel: UILabel!
     @IBOutlet weak var feelsLabel: UILabel!
@@ -38,8 +36,7 @@ class TableViewController: UITableViewController {
     @IBOutlet weak var sunLabel: UILabel!
     @IBOutlet weak var setLabel: UILabel!
     
-    
-    
+
     var forecastArray = [NewsForecastItem]()
     
     // Computed property for knowing if it's night already or not
@@ -76,7 +73,7 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+
         headerView = tableView.tableHeaderView
         tableView.tableHeaderView = nil
 
@@ -89,13 +86,18 @@ class TableViewController: UITableViewController {
         // Creates pullToRefresh function
         createPullRefresh()
         
+        //let view1 = UIView(frame: CGRectMake(10, 50, 50, 50))
+        //view1.backgroundColor = UIColor.redColor()
+        //view.addSubview(view1)
+
+        
         // Notification for getting back from background
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "appDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
         
         roundLabels()
         
     }
-    
+
     
     func roundLabels() {
         roundLabel(windLabel)
@@ -115,7 +117,7 @@ class TableViewController: UITableViewController {
     // Setting color and round corners of text labels
     func roundLabel(label: UILabel) {
         label.layer.backgroundColor  = UIColor(red: 0.5, green: 0.7, blue: 0.9, alpha: 0.7).CGColor
-        label.layer.cornerRadius = 5
+        label.layer.cornerRadius = 10
     }
     
     
@@ -126,20 +128,19 @@ class TableViewController: UITableViewController {
     
     // Gets all the data
     func getAllData(){
-        // From this point we're pulling data from web, we have to set on the animation for activity indicator
-        self.loadingIndicator.startAnimating()
+                                                        //32ca3e99da3f6f09 API KEY
         // For getting current weather
         getWeatherData("https://api.wunderground.com/api/32ca3e99da3f6f09/conditions/q/CA/Brno.json")
         // For sunrise/sunset
         getWeatherData("https://api.wunderground.com/api/32ca3e99da3f6f09/astronomy/q/Brno.json")
         // For 3 day forecast
-        getWeatherData("https://api.wunderground.com/api/bf53178fe77e23cb/forecast/q/Brno.json")
+        getWeatherData("https://api.wunderground.com/api/32ca3e99da3f6f09/forecast/q/Brno.json")
     }
     
     // Creating function for refreshing data while pulling down the scrollView
     func createPullRefresh(){
         self.refreshControl = UIRefreshControl()
-        self.refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl!.tintColor = UIColor.whiteColor()
         self.refreshControl!.addTarget(self, action: "refreshData:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl!)
     }
@@ -147,7 +148,6 @@ class TableViewController: UITableViewController {
     // Function for refreshing data after pulling down the
     func refreshData(sender:AnyObject){
         getAllData()
-        self.refreshControl!.endRefreshing()
     }
     
     
@@ -239,7 +239,7 @@ class TableViewController: UITableViewController {
                                         if let info = firstForecast["fcttext_metric"] as? String{
                                             forecastArray.append(NewsForecastItem(title: title, image: setIcon(icon).0, summary: info))
                                             // To this point we were downloading/parsing data, we can stop animating the activity indicator
-                                            loadingIndicator.stopAnimating()
+                                            self.refreshControl!.endRefreshing()
                                             tableView.reloadData()
                                         }
                                     }
